@@ -35,8 +35,8 @@ export default function Home() {
 
     const canvas = canvasRef.current;
     const ctx = canvas.getContext('2d');
-    canvas.width = 800 
-    canvas.height = 600 
+    canvas.width = 842
+    canvas.height = 595
   }, [])
   async function submitNodes () {
     try {
@@ -109,7 +109,8 @@ export default function Home() {
   const nodeRef = React.createRef()
   return (
     <div style={{ padding: '20px' }}>
-      <canvas ref={canvasRef} style={{position: 'absolute', top: `${CANVAS_MARGIN_TOP}px`, left: `${CANVAS_MARGIN_LEFT}px`, backgroundColor: 'lightgray'}}></canvas>
+      {imageSrc && <img src={imageSrc} alt="Generated Bitmap Image" style={{position:'absolute', marginTop: '52px'}}/>}
+      <canvas ref={canvasRef} style={{position: 'absolute', top: `${CANVAS_MARGIN_TOP}px`, left: `${CANVAS_MARGIN_LEFT}px`, backgroundColor: 'rgba(255, 0, 0, 0.0)'}}></canvas>
       <button style={{border: '1px solid white', padding: '8px'}}onClick={addNode}>Add Node</button>
       <select onChange={onNodeTypeChange} style={{width: '100px', height: '42px', marginLeft: '32px', padding: '8px', color: 'black'}} value={selectedNodeType} name="Node Type" id="node-type">
          {nodeOptions.map((option) => (
@@ -117,7 +118,6 @@ export default function Home() {
           ))}
       </select>
       <button style={{border: '1px solid white', marginLeft: '20px', padding: '8px'}}onClick={async function () {await submitNodes(); await getImage()}}>Generate</button>
-      {imageSrc && <img src={imageSrc} alt="Generated Bitmap Image" style={{position:'absolute', marginTop: '10px'}}/>}
       <div style={{ position: 'relative', width: '800px', height: '600px', border: '1px solid #ccc', marginTop: '10px' }}>
           <div>
         {nodes.map(rect => (
